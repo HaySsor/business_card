@@ -1,18 +1,33 @@
 <template>
   <div class="end-step">
     <!-- Tu dokładnie musi być ref="loadingTextRef" -->
-    <span class="loading-info-text" ref="loadingTextRef">
+    <span v-if="!isFinish" class="loading-info-text" ref="loadingTextRef">
       Właśnie tworzymy twoją kartę…
     </span>
+
+      <div v-else class="end-step-finish">
+        <h3>Twoja karat jest już gotowa! </h3>
+        <VButton @click="handleMoveToCard" :is-full="true" custom-class="end-step-button">
+          Zobacz
+        </VButton>
+      </div>
 
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue"
+import VButton from "../../../components/V-Button.vue";
+import {useRouter} from "vue-router";
 
-// 1) Tworzymy ref do elementu span
 const loadingTextRef = ref<HTMLElement | null>(null)
+const isFinish = ref<boolean>(false)
+const router = useRouter()
+
+
+const handleMoveToCard = () =>{
+  router.push({name: 'Card'})
+}
 
 onMounted(() => {
   const el = loadingTextRef.value
@@ -54,6 +69,11 @@ onMounted(() => {
     // A ustawiamy totalCycle jako całą długość cyklu, żeby pętla zaczynała się od początku
     span.style.animationDuration = `${totalCycle}s`
   })
+
+
+  setTimeout(() => {
+    isFinish.value = true
+  }, 3000)
 })
 
 
@@ -62,7 +82,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .end-step {
   width: 100%;
-  height: 400px;
+  height: 300px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -86,6 +106,20 @@ onMounted(() => {
     padding-top: 10px;
   }
 }
-
+.end-step-button{
+  width: 300px;
+  height: 50px;
+  font-size: 2rem;
+}
+.end-step-finish{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  h3{
+    font-size: 2.2rem;
+  }
+}
 
 </style>

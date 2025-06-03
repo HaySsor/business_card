@@ -1,12 +1,11 @@
 <template>
   <div class="register-container">
     <div class="register-avatar">
-      <img :src="registerStep === 3 ? '/loading_avatar.png' :'registration_avatar.png'" alt=""/>
+      <router-link :to="{name: 'Home'}">
+        <img :src="registerStep === 3 ? '/loading_avatar.png' :'registration_avatar.png'" alt=""/>
+      </router-link>
       <h2>Rejestracja</h2>
     </div>
-    <button @click="()=>registerStep = registerStep + 1">
-      click
-    </button>
     <div class="register-box">
       <StepElement :step="registerStep"/>
       <Transition name="slide-fade" mode="out-in">
@@ -31,16 +30,16 @@ const updateStep = (step: number) => {
 
 const componetsList = [
   {
-    name : "FirstStep",
-    component : FirstStep,
+    name: "FirstStep",
+    component: FirstStep,
   },
   {
-    name : "SecondStep",
-    component : SecondStep,
+    name: "SecondStep",
+    component: SecondStep,
   },
   {
-    name : "EndStep",
-    component : EndStep,
+    name: "EndStep",
+    component: EndStep,
   }
 ]
 
@@ -75,10 +74,12 @@ const componetsList = [
 .slide-fade-leave-active {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.slide-fade-enter-from{
+
+.slide-fade-enter-from {
   opacity: 0;
   transform: translateX(100px);
 }
+
 .slide-fade-leave-to {
   opacity: 0;
   transform: translateX(-100px);

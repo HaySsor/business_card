@@ -1,26 +1,27 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import {useUserStore } from "../store/user.ts";
-import Home from "../views/home/Home.vue";
-import Login from "../views/login/Login.vue";
-import Register from "../views/register/Register.vue";
-
 
 const routes: RouteRecordRaw[] = [
     {
         path : '/',
         name : 'Home',
-        component : Home
+        component : import('../views/home/Home.vue'),
     },
     {
         path : '/login',
         name : 'Login',
-        component : Login,
+        component : import('../views/login/Login.vue'),
     },
     {
         path : '/register',
         name : 'Register',
-        component : Register,
+        component : import('../views/register/Register.vue'),
+    },
+    {
+        path : `/card/:id`,
+        name: 'Card',
+        component : import('../views/card/Card.vue'),
     }
 ]
 
