@@ -1,0 +1,40 @@
+:root{
+    --main-color: #0081A7;
+    --sec-color : #00AFB9;
+    --main-gradient : linear-gradient(90deg, var(--main-color) 0%, var(--sec-color) 100%);
+    --dark-color: #333;
+    --light-gray: #f6f6f7;
+    --text-gray: #67676c;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+    font-size: 10px;
+}
+
+body{
+    font-family: "Nunito", sans-serif;
+}
+
+.letter {
+    display: inline-block;
+    position: relative;
+    color: var(--main-color, #0081A7);
+    animation-fill-mode: both;
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
