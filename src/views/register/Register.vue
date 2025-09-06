@@ -4,7 +4,7 @@
       <router-link :to="{name: 'Home'}">
         <img :src="registerStep === 3 ? '/loading_avatar.png' :'registration_avatar.png'" alt=""/>
       </router-link>
-      <h2>Rejestracja</h2>
+      <h2>Rejestracjax</h2>
     </div>
     <div class="register-box">
       <StepElement :step="registerStep"/>
